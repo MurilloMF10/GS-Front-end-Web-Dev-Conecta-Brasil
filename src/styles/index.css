@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-azul-marca: #0b4cb8;
+  --color-verde-lima: #a0db14;
+  --color-verde-principal: #74cf23;
+  --color-verde-escuro: #245b16;
+  --color-verde-claro: #eaf8dd;
+  --color-azul-marinho: #102a43;
+  --color-preto: #050805;
+  --color-branco: #ffffff;
+  --color-fundo: #f4f6f2;
+  --color-superficie: #ffffff;
+  --color-texto: #1f2933;
+  --color-texto-suave: #52606d;
+  --color-borda: #dce3d8;
+  --color-informacao: #2385d8;
+  --color-informacao-claro: #e8f1fc;
+  --color-sucesso: #2ead5b;
+  --color-atencao: #f5b700;
+  --color-lotacao-alta: #f97316;
+  --color-perigo: #d92d20;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--color-fundo);
+    color: var(--color-texto);
+    font-family: var(--font-sans);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-azul-marca);
+    outline-offset: 3px;
+  }
+}
