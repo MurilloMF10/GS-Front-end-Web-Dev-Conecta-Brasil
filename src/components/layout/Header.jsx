@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router'
+import useAutenticacao from '../../hooks/useAutenticacao.js'
 
 const classesLinkDesktop = ({ isActive }) =>
   `border-b-2 px-1 py-2 text-sm font-semibold transition-colors ${
@@ -17,6 +18,8 @@ const classesLinkMobile = ({ isActive }) =>
 
 function Header() {
   const [menuAberto, setMenuAberto] = useState(false)
+  const { estaAutenticado } = useAutenticacao()
+  const destinoPortal = estaAutenticado ? '/painel' : '/login'
 
   useEffect(() => {
     const fecharComEscape = (evento) => {
@@ -77,7 +80,7 @@ function Header() {
                 : 'bg-verde-principal text-preto hover:bg-verde-lima'
             }`
           }
-          to="/login"
+          to={destinoPortal}
         >
           Portal administrativo
         </NavLink>
@@ -157,7 +160,7 @@ function Header() {
           </NavLink>
           <NavLink
             className="mt-2 rounded-lg bg-verde-principal px-4 py-3 text-center text-base font-bold text-preto transition-colors hover:bg-verde-lima"
-            to="/login"
+            to={destinoPortal}
           >
             Portal administrativo
           </NavLink>
