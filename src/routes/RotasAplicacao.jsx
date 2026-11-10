@@ -6,6 +6,7 @@ import Equipe from '../pages/Equipe.jsx'
 import Faq from '../pages/Faq.jsx'
 import Home from '../pages/Home.jsx'
 import Login from '../pages/Login.jsx'
+import Onibus from '../pages/Onibus.jsx'
 import PaginaNaoEncontrada from '../pages/PaginaNaoEncontrada.jsx'
 import PainelAdministrativo from '../pages/PainelAdministrativo.jsx'
 import RotaPrivada from './RotaPrivada.jsx'
@@ -20,6 +21,7 @@ const roteador = createBrowserRouter([
       { path: 'faq', element: <Faq /> },
       { path: 'equipe', element: <Equipe /> },
       { path: 'login', element: <Login /> },
+      { path: 'onibus', element: <Onibus /> },
       {
         element: <RotaPrivada />,
         children: [

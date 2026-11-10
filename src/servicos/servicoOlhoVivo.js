@@ -6,7 +6,6 @@ const obterConfiguracao = () => {
       import.meta.env.VITE_API_OLHO_VIVO_ENDPOINT_BUSCA_LINHAS?.trim(),
     posicaoLinha:
       import.meta.env.VITE_API_OLHO_VIVO_ENDPOINT_POSICAO_LINHA?.trim(),
-    token: import.meta.env.VITE_API_OLHO_VIVO_TOKEN?.trim(),
     urlBase: import.meta.env.VITE_API_OLHO_VIVO_URL?.trim(),
   }
 
@@ -27,7 +26,7 @@ const obterConfiguracao = () => {
 }
 
 const criarUrl = (urlBase, endpoint, parametros = {}) => {
-  const url = new URL(`${urlBase}${endpoint}`)
+  const url = new URL(`${urlBase}${endpoint}`, window.location.origin)
 
   Object.entries(parametros).forEach(([chave, valor]) => {
     if (valor !== undefined && valor !== null && valor !== '') {
@@ -56,9 +55,7 @@ let autenticacaoEmAndamento = null
 
 const executarAutenticacao = async () => {
   const configuracao = obterConfiguracao()
-  const url = criarUrl(configuracao.urlBase, configuracao.autenticacao, {
-    token: configuracao.token,
-  })
+  const url = criarUrl(configuracao.urlBase, configuracao.autenticacao)
   const resposta = await realizarFetch(url, { method: 'POST' })
 
   if (!resposta.ok) {
@@ -116,10 +113,11 @@ const requisitarApi = async (endpoint, parametros = {}) => {
 const normalizarLinha = (linha) => ({
   circular: Boolean(linha.lc),
   codigo: Number(linha.cl),
-  numero: `${linha.lt}-${linha.tl}`,
+  numero: String(linha.lt),
   sentido: Number(linha.sl),
   terminalPrincipal: linha.tp ?? '',
   terminalSecundario: linha.ts ?? '',
+  tipoLetreiro: Number(linha.tl),
 })
 
 const normalizarVeiculo = (veiculo) => ({

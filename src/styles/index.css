@@ -59,4 +59,9 @@
     outline: 3px solid var(--color-azul-marca);
     outline-offset: 3px;
   }
+
+  .leaflet-container {
+    z-index: 0;
+    font-family: var(--font-sans);
+  }
 }
