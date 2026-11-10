@@ -1,3 +1,8 @@
+import {
+  formatarData,
+  humanizarTexto,
+} from '../../utilitarios/formatadoresAviso.js'
+
 const estilosPrioridade = {
   alta: 'border-perigo/25 bg-red-50 text-perigo',
   media: 'border-atencao/40 bg-amber-50 text-amber-800',
@@ -8,29 +13,6 @@ const estilosBorda = {
   alta: 'border-l-perigo',
   media: 'border-l-atencao',
   baixa: 'border-l-informacao',
-}
-
-const humanizarTexto = (texto) => {
-  if (!texto) {
-    return 'Não informado'
-  }
-
-  const textoFormatado = texto.replaceAll('_', ' ').replaceAll('-', ' ')
-
-  return textoFormatado.charAt(0).toUpperCase() + textoFormatado.slice(1)
-}
-
-const formatarData = (data) => {
-  const dataConvertida = new Date(data)
-
-  if (Number.isNaN(dataConvertida.getTime())) {
-    return 'Data não informada'
-  }
-
-  return new Intl.DateTimeFormat('pt-BR', {
-    dateStyle: 'long',
-    timeStyle: 'short',
-  }).format(dataConvertida)
 }
 
 function CartaoAviso({ aviso }) {
