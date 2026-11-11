@@ -1,17 +1,21 @@
 import { Link } from 'react-router'
+import logoConectaBrasil from '../../assets/images/logo-conecta-brasil.png'
 
 function Footer() {
   return (
     <footer className="border-t-4 border-verde-principal bg-azul-marinho text-branco">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.25fr_0.75fr_0.75fr_1fr] lg:px-8">
         <div className="md:col-span-2 lg:col-span-1">
           <Link
             aria-label="Conecta Brasil - página inicial"
-            className="text-2xl font-extrabold italic tracking-tight"
+            className="inline-flex"
             to="/"
           >
-            <span className="text-branco">Conecta</span>
-            <span className="text-verde-lima">Brasil</span>
+            <img
+              alt="Conecta Brasil"
+              className="h-10 w-auto"
+              src={logoConectaBrasil}
+            />
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/70">
             Informação para uma viagem mais tranquila, acessível e previsível.
@@ -26,11 +30,6 @@ function Footer() {
             <li>
               <Link className="transition-colors hover:text-branco" to="/onibus">
                 Acompanhar ônibus
-              </Link>
-            </li>
-            <li>
-              <Link className="transition-colors hover:text-branco" to="/lotacao">
-                Consultar lotação
               </Link>
             </li>
             <li>

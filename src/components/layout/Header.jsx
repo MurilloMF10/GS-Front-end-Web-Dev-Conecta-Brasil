@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router'
+import logoConectaBrasil from '../../assets/images/logo-conecta-brasil.png'
 import useAutenticacao from '../../hooks/useAutenticacao.js'
 
 const classesLinkDesktop = ({ isActive }) =>
-  `border-b-2 px-1 py-2 text-sm font-semibold transition-colors ${
+  `border-b-2 px-1 py-2 text-sm font-bold transition-colors ${
     isActive
       ? 'border-verde-principal text-azul-marca'
       : 'border-transparent text-texto hover:text-azul-marca'
   }`
 
 const classesLinkMobile = ({ isActive }) =>
-  `rounded-lg px-4 py-3 text-base font-semibold transition-colors ${
+  `px-4 py-3 text-base font-bold transition-colors ${
     isActive
-      ? 'bg-verde-claro text-verde-escuro'
+      ? 'border-l-4 border-verde-principal bg-verde-claro text-verde-escuro'
       : 'text-texto hover:bg-fundo hover:text-azul-marca'
   }`
 
@@ -34,15 +35,18 @@ function Header() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 border-b-4 border-verde-principal bg-branco shadow-sm">
+    <header className="sticky top-0 z-50 border-b border-borda bg-branco/95 backdrop-blur-md">
       <div className="mx-auto flex min-h-18 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <Link
           aria-label="Conecta Brasil - página inicial"
-          className="shrink-0 text-xl font-extrabold italic tracking-tight sm:text-2xl"
+          className="shrink-0"
           to="/"
         >
-          <span className="text-azul-marca">Conecta</span>
-          <span className="text-verde-lima">Brasil</span>
+          <img
+            alt="Conecta Brasil"
+            className="h-9 w-auto sm:h-10"
+            src={logoConectaBrasil}
+          />
         </Link>
 
         <nav
@@ -54,9 +58,6 @@ function Header() {
           </NavLink>
           <NavLink className={classesLinkDesktop} to="/onibus">
             Acompanhar ônibus
-          </NavLink>
-          <NavLink className={classesLinkDesktop} to="/lotacao">
-            Lotação
           </NavLink>
           <NavLink className={classesLinkDesktop} to="/avisos">
             Avisos
@@ -74,7 +75,7 @@ function Header() {
 
         <NavLink
           className={({ isActive }) =>
-            `hidden rounded-lg px-4 py-2.5 text-sm font-bold transition-colors xl:inline-flex ${
+            `hidden rounded-md px-4 py-2.5 text-sm font-bold transition-colors xl:inline-flex ${
               isActive
                 ? 'bg-verde-escuro text-branco'
                 : 'bg-verde-principal text-preto hover:bg-verde-lima'
@@ -89,7 +90,7 @@ function Header() {
           aria-controls="menu-mobile"
           aria-expanded={menuAberto}
           aria-label={menuAberto ? 'Fechar menu' : 'Abrir menu'}
-          className="inline-flex size-11 items-center justify-center rounded-lg border border-borda text-azul-marinho transition-colors hover:bg-fundo xl:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-md border border-borda text-azul-marinho transition-colors hover:bg-fundo xl:hidden"
           onClick={() => setMenuAberto((aberto) => !aberto)}
           type="button"
         >
@@ -143,9 +144,6 @@ function Header() {
           <NavLink className={classesLinkMobile} to="/onibus">
             Acompanhar ônibus
           </NavLink>
-          <NavLink className={classesLinkMobile} to="/lotacao">
-            Lotação
-          </NavLink>
           <NavLink className={classesLinkMobile} to="/avisos">
             Avisos
           </NavLink>
@@ -159,7 +157,7 @@ function Header() {
             Equipe
           </NavLink>
           <NavLink
-            className="mt-2 rounded-lg bg-verde-principal px-4 py-3 text-center text-base font-bold text-preto transition-colors hover:bg-verde-lima"
+            className="mt-2 rounded-md bg-verde-principal px-4 py-3 text-center text-base font-bold text-preto transition-colors hover:bg-verde-lima"
             to={destinoPortal}
           >
             Portal administrativo
