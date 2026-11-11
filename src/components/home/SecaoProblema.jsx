@@ -1,3 +1,6 @@
+import imagemEspera from '../../assets/images/esperando-onibus.jpg'
+import imagemIdosos from '../../assets/images/idosos-onibus.jpg'
+
 const desafios = [
   {
     numero: '01',
@@ -39,21 +42,47 @@ function SecaoProblema() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {desafios.map(({ numero, titulo, descricao }) => (
-            <article
-              className="rounded-2xl border border-borda bg-superficie p-6 shadow-sm transition-transform hover:-translate-y-1"
-              key={numero}
-            >
-              <span className="text-sm font-extrabold text-verde-escuro">
-                {numero}
-              </span>
-              <h3 className="mt-5 text-xl font-bold text-azul-marinho">
-                {titulo}
-              </h3>
-              <p className="mt-3 leading-6 text-texto-suave">{descricao}</p>
-            </article>
-          ))}
+        <div className="mt-12 grid overflow-hidden border border-borda bg-branco lg:grid-cols-[1.35fr_0.65fr]">
+          <div className="grid min-h-96 sm:grid-cols-2">
+            <figure className="relative min-h-72 overflow-hidden sm:min-h-full">
+              <img
+                alt="Passageiros aguardando ônibus em um ponto movimentado"
+                className="absolute inset-0 size-full object-cover"
+                src={imagemEspera}
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-preto/90 to-transparent px-6 pb-5 pt-16 text-sm font-bold text-branco">
+                Espera sem informação
+              </figcaption>
+            </figure>
+            <figure className="relative min-h-72 overflow-hidden sm:min-h-full">
+              <img
+                alt="Pessoas idosas utilizando um ônibus urbano"
+                className="absolute inset-0 size-full object-cover"
+                src={imagemIdosos}
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-preto/90 to-transparent px-6 pb-5 pt-16 text-sm font-bold text-branco">
+                Conforto e acessibilidade importam
+              </figcaption>
+            </figure>
+          </div>
+
+          <div className="divide-y divide-borda">
+            {desafios.map(({ numero, titulo, descricao }) => (
+              <article className="p-6" key={numero}>
+                <div className="flex items-baseline gap-4">
+                  <span className="font-display text-3xl font-bold text-verde-principal">
+                    {numero}
+                  </span>
+                  <h3 className="text-2xl font-bold text-azul-marinho">
+                    {titulo}
+                  </h3>
+                </div>
+                <p className="mt-2 pl-12 leading-6 text-texto-suave">
+                  {descricao}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
