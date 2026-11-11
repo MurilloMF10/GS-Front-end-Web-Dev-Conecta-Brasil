@@ -33,7 +33,7 @@ function Login() {
 
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border border-borda bg-branco shadow-xl lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid max-w-5xl overflow-hidden rounded-md border border-borda bg-branco shadow-lg lg:grid-cols-[0.9fr_1.1fr]">
         <div className="bg-azul-marinho p-8 text-branco sm:p-10 lg:p-12">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-verde-principal">
             Acesso restrito
@@ -46,7 +46,7 @@ function Login() {
             Conecta Brasil.
           </p>
 
-          <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="mt-10 border-l-4 border-verde-principal bg-white/5 p-5">
             <p className="font-bold text-verde-principal">
               Ambiente acadêmico
             </p>

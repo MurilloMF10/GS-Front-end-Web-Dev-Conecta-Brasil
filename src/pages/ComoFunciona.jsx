@@ -1,4 +1,8 @@
 import CabecalhoPagina from '../components/institucionais/CabecalhoPagina.jsx'
+import imagemCamera from '../assets/images/camera-contagem-passageiros.jpg'
+import imagemConsulta from '../assets/images/consulta-cidadao-celular.jpg'
+import imagemLocalizacao from '../assets/images/localizacao-onibus-ao-vivo.png'
+import imagemProcessamento from '../assets/images/processamento-python-ocupacao.jpg'
 
 const etapas = [
   {
@@ -6,24 +10,32 @@ const etapas = [
     titulo: 'Captura no ambiente',
     descricao:
       'Câmeras instaladas nos veículos ou terminais fornecem as imagens usadas para estimar quantas pessoas estão no local.',
+    imagem: imagemCamera,
+    alt: 'Câmera contando passageiros dentro de um ônibus',
   },
   {
     numero: '02',
     titulo: 'Processamento em Python',
     descricao:
       'O protótipo de visão computacional detecta pessoas na imagem e transforma a contagem em um dado de ocupação.',
+    imagem: imagemProcessamento,
+    alt: 'Processamento visual da contagem de passageiros',
   },
   {
     numero: '03',
     titulo: 'Integração dos dados',
     descricao:
       'A estimativa de lotação é combinada aos dados de localização e operação disponibilizados pela API Olho Vivo.',
+    imagem: imagemLocalizacao,
+    alt: 'Mapa com a localização de ônibus em São Paulo',
   },
   {
     numero: '04',
     titulo: 'Consulta pelo cidadão',
     descricao:
       'A interface organiza as informações de maneira simples para ajudar o passageiro a planejar melhor o deslocamento.',
+    imagem: imagemConsulta,
+    alt: 'Cidadão consultando o ônibus pelo celular',
   },
 ]
 
@@ -55,18 +67,21 @@ function ComoFunciona() {
           </div>
 
           <ol className="mt-12 grid gap-6 md:grid-cols-2">
-            {etapas.map(({ numero, titulo, descricao }) => (
+            {etapas.map(({ numero, titulo, descricao, imagem, alt }) => (
               <li
-                className="rounded-2xl border border-borda bg-branco p-7 shadow-sm"
+                className="grid overflow-hidden rounded-md border border-borda bg-branco sm:grid-cols-[14rem_1fr]"
                 key={numero}
               >
-                <span className="grid size-12 place-items-center rounded-full bg-verde-principal text-sm font-extrabold text-preto">
-                  {numero}
-                </span>
-                <h3 className="mt-6 text-xl font-bold text-azul-marinho">
-                  {titulo}
-                </h3>
-                <p className="mt-3 leading-7 text-texto-suave">{descricao}</p>
+                <img alt={alt} className="h-52 size-full object-cover sm:h-full" loading="lazy" src={imagem} />
+                <div className="border-t-4 border-verde-principal p-6 sm:border-l-4 sm:border-t-0">
+                  <span className="font-display text-3xl font-bold text-verde-escuro">
+                    {numero}
+                  </span>
+                  <h3 className="mt-3 text-2xl font-bold text-azul-marinho">
+                    {titulo}
+                  </h3>
+                  <p className="mt-3 leading-7 text-texto-suave">{descricao}</p>
+                </div>
               </li>
             ))}
           </ol>
@@ -75,7 +90,7 @@ function ComoFunciona() {
 
       <section className="bg-branco px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
-          <article className="rounded-2xl border border-informacao/20 bg-informacao-claro p-7 sm:p-9">
+          <article className="border-t-4 border-informacao bg-informacao-claro p-7 sm:p-9">
             <p className="text-sm font-bold uppercase tracking-wider text-azul-marca">
               Dados de mobilidade
             </p>
@@ -90,7 +105,7 @@ function ComoFunciona() {
             </p>
           </article>
 
-          <article className="rounded-2xl border border-verde-principal/30 bg-verde-claro p-7 sm:p-9">
+          <article className="border-t-4 border-verde-principal bg-verde-claro p-7 sm:p-9">
             <p className="text-sm font-bold uppercase tracking-wider text-verde-escuro">
               Protótipo acadêmico
             </p>
@@ -126,12 +141,10 @@ function ComoFunciona() {
           <ul className="grid gap-3">
             {compromissos.map((compromisso) => (
               <li
-                className="flex gap-4 rounded-xl border border-white/10 bg-white/5 p-4"
+                className="flex gap-4 border-b border-white/15 py-5 first:border-t"
                 key={compromisso}
               >
-                <span className="grid size-7 shrink-0 place-items-center rounded-full bg-verde-principal font-bold text-preto">
-                  ✓
-                </span>
+                <i aria-hidden="true" className="bx bx-check-shield text-3xl text-verde-principal" />
                 <span className="leading-7 text-white/80">{compromisso}</span>
               </li>
             ))}

@@ -54,8 +54,8 @@ function Faq() {
       />
 
       <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.7fr_1.3fr]">
-          <div>
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.65fr_1.35fr]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-azul-marca">
               Tire suas dúvidas
             </p>
@@ -67,6 +67,12 @@ function Faq() {
               deixam claro o que já é demonstrado e o que dependeria de uma
               implantação real.
             </p>
+            <div className="mt-8 border-l-4 border-verde-principal bg-verde-claro p-5">
+              <p className="font-bold text-verde-escuro">Não encontrou a resposta?</p>
+              <p className="mt-2 text-sm leading-6 text-texto-suave">
+                Consulte também a página “Como funciona” para conhecer o fluxo completo da proposta.
+              </p>
+            </div>
           </div>
 
           <AcordeaoFaq perguntas={perguntas} />

@@ -61,7 +61,7 @@ function Equipe() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-7 md:grid-cols-2">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {integrantes.map((integrante) => (
               <CartaoIntegrante key={integrante.nome} {...integrante} />
             ))}
