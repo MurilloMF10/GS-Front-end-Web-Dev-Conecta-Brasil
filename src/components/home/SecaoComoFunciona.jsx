@@ -1,4 +1,7 @@
 import { Link } from 'react-router'
+import imagemCamera from '../../assets/images/camera-contagem-passageiros.jpg'
+import imagemConsulta from '../../assets/images/consulta-cidadao-celular.jpg'
+import imagemProcessamento from '../../assets/images/processamento-python-ocupacao.jpg'
 
 const etapas = [
   {
@@ -6,18 +9,24 @@ const etapas = [
     titulo: 'Contagem anônima',
     descricao:
       'As câmeras detectam pessoas no ambiente sem identificar rostos ou indivíduos.',
+    imagem: imagemCamera,
+    alt: 'Visão de uma câmera contando passageiros dentro de um ônibus',
   },
   {
     numero: '02',
     titulo: 'Processamento da ocupação',
     descricao:
       'O sistema transforma a contagem em uma classificação de lotação fácil de entender.',
+    imagem: imagemProcessamento,
+    alt: 'Tela de processamento apresentando a análise de ocupação',
   },
   {
     numero: '03',
     titulo: 'Decisão antes de sair',
     descricao:
       'O cidadão consulta as informações e escolhe a opção mais adequada para o trajeto.',
+    imagem: imagemConsulta,
+    alt: 'Passageiro consultando informações do ônibus pelo celular',
   },
 ]
 
@@ -42,21 +51,24 @@ function SecaoComoFunciona() {
         </div>
 
         <ol className="relative mt-14 grid gap-6 lg:grid-cols-3">
-          {etapas.map(({ numero, titulo, descricao }) => (
+          {etapas.map(({ numero, titulo, descricao, imagem, alt }) => (
             <li
-              className="relative rounded-2xl border border-white/15 bg-white/5 p-7 backdrop-blur-sm"
+              className="relative overflow-hidden rounded-md border border-white/15 bg-white/5"
               key={numero}
             >
-              <span className="grid size-12 place-items-center rounded-full bg-verde-principal text-sm font-extrabold text-preto">
-                {numero}
-              </span>
-              <h3 className="mt-6 text-xl font-bold">{titulo}</h3>
-              <p className="mt-3 leading-6 text-white/70">{descricao}</p>
+              <img alt={alt} className="h-48 w-full object-cover" src={imagem} />
+              <div className="border-t-4 border-verde-principal p-6">
+                <span className="font-display text-3xl font-bold text-verde-principal">
+                  {numero}
+                </span>
+                <h3 className="mt-3 text-2xl font-bold">{titulo}</h3>
+                <p className="mt-3 leading-6 text-white/70">{descricao}</p>
+              </div>
             </li>
           ))}
         </ol>
 
-        <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-verde-principal/30 bg-verde-principal/10 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-l-4 border-verde-principal bg-white/5 p-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-bold text-verde-principal">
               Privacidade desde o início

@@ -1,8 +1,8 @@
 const compromissos = [
-  'Contagem de pessoas sem identificação individual.',
-  'Nenhum reconhecimento facial faz parte da proposta.',
-  'As imagens não precisam ser armazenadas pelo protótipo.',
-  'Resultados apresentados com transparência sobre possíveis limitações.',
+  { icone: 'bx-user-x', texto: 'Contagem de pessoas sem identificação individual.' },
+  { icone: 'bx-scan', texto: 'Nenhum reconhecimento facial faz parte da proposta.' },
+  { icone: 'bx-image-alt', texto: 'As imagens não precisam ser armazenadas pelo protótipo.' },
+  { icone: 'bx-info-circle', texto: 'Resultados apresentados com transparência sobre possíveis limitações.' },
 ]
 
 function SecaoPrivacidade() {
@@ -24,15 +24,16 @@ function SecaoPrivacidade() {
         </div>
 
         <ul className="grid gap-3">
-          {compromissos.map((compromisso) => (
+          {compromissos.map(({ icone, texto }) => (
             <li
-              className="flex gap-4 rounded-xl border border-white/10 bg-white/5 p-4"
-              key={compromisso}
+              className="flex gap-4 border-b border-white/15 py-5 first:border-t"
+              key={texto}
             >
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-verde-principal font-bold text-preto">
-                ✓
-              </span>
-              <span className="leading-7 text-white/80">{compromisso}</span>
+              <i
+                aria-hidden="true"
+                className={`bx ${icone} text-3xl text-verde-principal`}
+              />
+              <span className="leading-7 text-white/80">{texto}</span>
             </li>
           ))}
         </ul>

@@ -3,12 +3,33 @@ import ContextoAutenticacao from '../contextos/ContextoAutenticacao.js'
 
 const CHAVE_SESSAO = 'conecta-brasil:sessao-administrativa'
 
+const obterCredenciaisConfiguradas = () => ({
+  email: import.meta.env.VITE_ADMIN_EMAIL?.trim(),
+  senha: import.meta.env.VITE_ADMIN_SENHA,
+})
+
 const recuperarUsuario = () => {
   try {
-    const sessaoSalva = localStorage.getItem(CHAVE_SESSAO)
-    return sessaoSalva ? JSON.parse(sessaoSalva) : null
+    const sessaoSalva = sessionStorage.getItem(CHAVE_SESSAO)
+
+    if (!sessaoSalva) {
+      return null
+    }
+
+    const usuarioSalvo = JSON.parse(sessaoSalva)
+    const { email } = obterCredenciaisConfiguradas()
+    const sessaoValida =
+      email &&
+      usuarioSalvo?.email?.toLowerCase() === email.toLowerCase()
+
+    if (!sessaoValida) {
+      sessionStorage.removeItem(CHAVE_SESSAO)
+      return null
+    }
+
+    return usuarioSalvo
   } catch {
-    localStorage.removeItem(CHAVE_SESSAO)
+    sessionStorage.removeItem(CHAVE_SESSAO)
     return null
   }
 }
@@ -17,8 +38,10 @@ function ProvedorAutenticacao({ children }) {
   const [usuario, setUsuario] = useState(recuperarUsuario)
 
   const entrar = (email, senha) => {
-    const emailConfigurado = import.meta.env.VITE_ADMIN_EMAIL?.trim()
-    const senhaConfigurada = import.meta.env.VITE_ADMIN_SENHA
+    const {
+      email: emailConfigurado,
+      senha: senhaConfigurada,
+    } = obterCredenciaisConfiguradas()
 
     if (!emailConfigurado || !senhaConfigurada) {
       return {
@@ -44,14 +67,14 @@ function ProvedorAutenticacao({ children }) {
       nome: 'Administrador',
     }
 
-    localStorage.setItem(CHAVE_SESSAO, JSON.stringify(usuarioAutenticado))
+    sessionStorage.setItem(CHAVE_SESSAO, JSON.stringify(usuarioAutenticado))
     setUsuario(usuarioAutenticado)
 
     return { sucesso: true }
   }
 
   const sair = () => {
-    localStorage.removeItem(CHAVE_SESSAO)
+    sessionStorage.removeItem(CHAVE_SESSAO)
     setUsuario(null)
   }
 

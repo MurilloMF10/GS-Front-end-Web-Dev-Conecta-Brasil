@@ -54,6 +54,7 @@ function Onibus() {
           {!carregandoLinhas && !erro && linhas.length === 0 && (
             <EstadoVazio
               descricao="Pesquise uma linha pelo número ou pelo nome de um terminal para começar."
+              icone="bx-bus"
               titulo="Aguardando sua pesquisa"
             />
           )}

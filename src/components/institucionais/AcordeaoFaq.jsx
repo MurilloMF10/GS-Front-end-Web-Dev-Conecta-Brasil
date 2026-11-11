@@ -10,7 +10,7 @@ function AcordeaoFaq({ perguntas }) {
   }
 
   return (
-    <div className="divide-y divide-borda overflow-hidden rounded-2xl border border-borda bg-branco shadow-sm">
+    <div className="divide-y divide-borda border-y border-borda bg-branco">
       {perguntas.map(({ pergunta, resposta }, indice) => {
         const estaAberta = perguntaAberta === indice
         const idBotao = `pergunta-${indice}`
@@ -22,7 +22,7 @@ function AcordeaoFaq({ perguntas }) {
               <button
                 aria-controls={idResposta}
                 aria-expanded={estaAberta}
-                className="flex w-full items-center justify-between gap-6 px-5 py-6 text-left text-lg font-bold text-azul-marinho transition-colors hover:bg-fundo sm:px-7"
+                className="flex w-full items-center justify-between gap-6 border-l-4 border-transparent px-5 py-6 text-left text-xl font-bold text-azul-marinho transition-colors hover:border-verde-principal hover:bg-fundo sm:px-7"
                 id={idBotao}
                 onClick={() => alternarPergunta(indice)}
                 type="button"
@@ -30,11 +30,10 @@ function AcordeaoFaq({ perguntas }) {
                 <span>{pergunta}</span>
                 <span
                   aria-hidden="true"
-                  className={`grid size-8 shrink-0 place-items-center rounded-full bg-verde-claro text-xl text-verde-escuro transition-transform ${
-                    estaAberta ? 'rotate-45' : ''
+                  className={`bx text-2xl text-verde-escuro ${
+                    estaAberta ? 'bx-minus' : 'bx-plus'
                   }`}
                 >
-                  +
                 </span>
               </button>
             </h2>
