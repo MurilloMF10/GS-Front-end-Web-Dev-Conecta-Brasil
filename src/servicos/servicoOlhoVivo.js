@@ -50,6 +50,22 @@ const realizarFetch = async (url, opcoes = {}) => {
   }
 }
 
+const requisitarFuncaoVercel = async (operacao, parametros = {}) => {
+  const { urlBase } = obterConfiguracao()
+  const url = criarUrl(urlBase, '', { operacao, ...parametros })
+  const resposta = await realizarFetch(url)
+  const dados = await resposta.json().catch(() => null)
+
+  if (!resposta.ok) {
+    throw new Error(
+      dados?.mensagem ??
+        `Não foi possível consultar a API Olho Vivo. Código ${resposta.status}.`,
+    )
+  }
+
+  return dados
+}
+
 let sessaoAutenticada = false
 let autenticacaoEmAndamento = null
 
@@ -133,17 +149,28 @@ const normalizarVeiculo = (veiculo) => ({
 })
 
 export const buscarLinhas = async (termoBusca) => {
-  const { buscaLinhas } = obterConfiguracao()
-  const dados = await requisitarApi(buscaLinhas, {
-    termosBusca: termoBusca.trim(),
-  })
+  const termosBusca = termoBusca.trim()
+  let dados
+
+  if (import.meta.env.PROD) {
+    dados = await requisitarFuncaoVercel('buscarLinhas', { termosBusca })
+  } else {
+    const { buscaLinhas } = obterConfiguracao()
+    dados = await requisitarApi(buscaLinhas, { termosBusca })
+  }
 
   return Array.isArray(dados) ? dados.map(normalizarLinha) : []
 }
 
 export const buscarPosicoesLinha = async (codigoLinha) => {
-  const { posicaoLinha } = obterConfiguracao()
-  const dados = await requisitarApi(posicaoLinha, { codigoLinha })
+  let dados
+
+  if (import.meta.env.PROD) {
+    dados = await requisitarFuncaoVercel('posicaoLinha', { codigoLinha })
+  } else {
+    const { posicaoLinha } = obterConfiguracao()
+    dados = await requisitarApi(posicaoLinha, { codigoLinha })
+  }
 
   return {
     horarioReferencia: dados.hr ?? '',
