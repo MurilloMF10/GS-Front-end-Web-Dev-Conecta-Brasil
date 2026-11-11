@@ -90,7 +90,7 @@ export const autenticarOlhoVivo = async () => {
   }
 }
 
-const requisitarApi = async (endpoint, parametros = {}) => {
+const requisitarApi = async (endpoint, parametros = {}, tentativa = 0) => {
   await autenticarOlhoVivo()
 
   const { urlBase } = obterConfiguracao()
@@ -100,6 +100,10 @@ const requisitarApi = async (endpoint, parametros = {}) => {
   if (!resposta.ok) {
     if (resposta.status === 401 || resposta.status === 403) {
       sessaoAutenticada = false
+
+      if (tentativa === 0) {
+        return requisitarApi(endpoint, parametros, tentativa + 1)
+      }
     }
 
     throw new Error(
