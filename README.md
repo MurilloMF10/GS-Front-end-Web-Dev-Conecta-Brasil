@@ -196,10 +196,10 @@ O recurso de avisos armazena os campos de título, descrição, categoria, prior
 
 | Integrante | Responsabilidade |
 | --- | --- |
-| **Isaac** | Desenvolvimento principal da funcionalidade em Python, lógica de contagem de pessoas e integração dos cálculos com a proposta da aplicação |
-| **Murillo** | Arquitetura e implementação do front-end, componentização em React, responsividade e integrações da aplicação web |
-| **João** | Configuração dos dispositivos ESP32, integração de módulos e construção dos fluxos no Node-RED |
-| **Thalles** | Organização da documentação, elaboração da narrativa e produção e apresentação do vídeo pitch |
+| **Isaac Pongelli RM-569166** | Desenvolvimento principal da funcionalidade em Python, lógica de contagem de pessoas e integração dos cálculos com a proposta da aplicação |
+| **Murillo Marim RM-569045** | Arquitetura e implementação do front-end, componentização em React, responsividade e integrações da aplicação web |
+| **João Lucca Marenov RM-569562** | Configuração dos dispositivos ESP32, integração de módulos e construção dos fluxos no Node-RED |
+| **Thalles Almeida RM-569925** | Organização da documentação, elaboração da narrativa e produção e apresentação do vídeo pitch |
 
 ## Privacidade e limitações
 
